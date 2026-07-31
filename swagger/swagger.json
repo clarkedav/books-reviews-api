@@ -5,26 +5,29 @@
     "description": "CSE 341 Project 2 Part 1 - CRUD API for Books and Reviews",
     "version": "1.0.0"
   },
-  "host": "localhost:3000",
+  "host": "books-reviews-api.onrender.com",
   "basePath": "/",
+  "tags": [],
   "schemes": [
     "https",
     "http"
   ],
+  "consumes": [],
+  "produces": [],
   "paths": {
     "/": {
       "get": {
+        "tags": [],
         "description": "",
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
+        "parameters": [],
+        "responses": {}
       }
     },
     "/books/": {
       "get": {
+        "tags": [],
         "description": "",
+        "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
@@ -35,10 +38,11 @@
         }
       },
       "post": {
+        "tags": [],
         "description": "",
         "parameters": [
           {
-            "name": "body",
+            "name": "obj",
             "in": "body",
             "schema": {
               "type": "object",
@@ -86,6 +90,7 @@
     },
     "/books/{id}": {
       "get": {
+        "tags": [],
         "description": "",
         "parameters": [
           {
@@ -111,6 +116,7 @@
         }
       },
       "put": {
+        "tags": [],
         "description": "",
         "parameters": [
           {
@@ -120,7 +126,7 @@
             "type": "string"
           },
           {
-            "name": "body",
+            "name": "obj",
             "in": "body",
             "schema": {
               "type": "object",
@@ -169,6 +175,7 @@
         }
       },
       "delete": {
+        "tags": [],
         "description": "",
         "parameters": [
           {
@@ -196,7 +203,9 @@
     },
     "/reviews/": {
       "get": {
+        "tags": [],
         "description": "",
+        "parameters": [],
         "responses": {
           "200": {
             "description": "OK"
@@ -207,10 +216,11 @@
         }
       },
       "post": {
+        "tags": [],
         "description": "",
         "parameters": [
           {
-            "name": "body",
+            "name": "obj",
             "in": "body",
             "schema": {
               "type": "object",
@@ -246,6 +256,7 @@
     },
     "/reviews/{id}": {
       "get": {
+        "tags": [],
         "description": "",
         "parameters": [
           {
@@ -271,6 +282,7 @@
         }
       },
       "put": {
+        "tags": [],
         "description": "",
         "parameters": [
           {
@@ -280,7 +292,7 @@
             "type": "string"
           },
           {
-            "name": "body",
+            "name": "obj",
             "in": "body",
             "schema": {
               "type": "object",
@@ -317,6 +329,7 @@
         }
       },
       "delete": {
+        "tags": [],
         "description": "",
         "parameters": [
           {
@@ -342,5 +355,6 @@
         }
       }
     }
-  }
+  },
+  "definitions": {}
 }
