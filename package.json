@@ -1,0 +1,21 @@
+{
+  "name": "books-reviews-api",
+  "version": "1.0.0",
+  "description": "CRUD API for Books and Reviews - CSE 341 Project 2 Part 1",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "nodemon server.js",
+    "swagger": "node swagger/swagger.js"
+  },
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "mongodb": "^6.8.0",
+    "swagger-ui-express": "^5.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.4",
+    "swagger-autogen": "^2.9.2"
+  }
+}
