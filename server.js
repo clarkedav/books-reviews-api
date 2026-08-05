@@ -1,4 +1,5 @@
 require('dotenv').config();
+
 const express = require('express');
 const session = require('express-session');
 const passport = require('./config/passport');
@@ -9,6 +10,7 @@ const { initDb } = require('./db/connect');
 const app = express();
 const port = process.env.PORT || 3000;
 
+// Middleware
 app.use(express.json());
 
 app.use(
@@ -18,10 +20,11 @@ app.use(
     saveUninitialized: false
   })
 );
+
 app.use(passport.initialize());
 app.use(passport.session());
 
-// Swagger docs
+// Swagger
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 // Routes
@@ -29,32 +32,42 @@ app.use('/auth', require('./routes/auth'));
 app.use('/books', require('./routes/books'));
 app.use('/reviews', require('./routes/reviews'));
 
+// Home route
 app.get('/', (req, res) => {
   const loggedIn = req.isAuthenticated && req.isAuthenticated();
-  res.send(
-    `Books & Reviews API is running. Go to /api-docs for documentation. ${
-      loggedIn ? `Logged in as ${req.user.username}. ` : 'Not logged in. '
-    }<a href="/auth/login">Login with GitHub</a> | <a href="/auth/logout">Logout</a>`
-  );
+
+  res.send(`
+    <h1>Books & Reviews API</h1>
+    <p>Go to <a href="/api-docs">Swagger Documentation</a>.</p>
+
+    ${
+      loggedIn
+        ? `<p>Logged in as <strong>${req.user.username}</strong></p>`
+        : `<p>Not logged in.</p>`
+    }
+
+    <p>
+      <a href="/auth/login">Login with GitHub</a> |
+      <a href="/auth/logout">Logout</a>
+    </p>
+  `);
 });
 
-// Catch-all 404
+// 404 handler
 app.use((req, res) => {
-  res.status(404).json({ message: 'Route not found' });
+  res.status(404).json({
+    message: 'Route not found'
+  });
 });
 
-// Global error handler (safety net)
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).json({ message: 'Something went wrong on the server' });
-});
-
+// Initialize database and start server
 initDb((err) => {
   if (err) {
-    console.log(err);
-  } else {
-    app.listen(port, () => {
-      console.log(`Server is running on port ${port}`);
-    });
+    console.error('Database connection failed:', err);
+    process.exit(1);
   }
+
+  app.listen(port, () => {
+    console.log(`Server running on port ${port}`);
+  });
 });
