@@ -32,7 +32,7 @@ router.get('/logout', (req, res, next) => {
     if (err) {
       return next(err);
     }
-    res.status(200).json({ message: 'Logged out successfully' });
+    res.redirect('/'); // Redirect to home after logout
   });
 });
 
